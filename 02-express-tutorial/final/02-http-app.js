@@ -5,7 +5,7 @@ const { readFileSync } = require('fs')
 const homePage = readFileSync('./navbar-app/index.html')
 const homeStyles = readFileSync('./navbar-app/styles.css')
 const homeImage = readFileSync('./navbar-app/logo.svg')
-const homeLogic = readFileSync('./navbar-app/browser-app.js')
+const homeLogic = readFileSync('./navbar-app/browser-1-intro.js')
 
 const server = http.createServer((req, res) => {
   // console.log(req.method)
@@ -36,7 +36,7 @@ const server = http.createServer((req, res) => {
     res.end()
   }
   // logic
-  else if (url === '/browser-app.js') {
+  else if (url === '/browser-1-intro.js') {
     res.writeHead(200, { 'content-type': 'text/javascript' })
     res.write(homeLogic)
     res.end()

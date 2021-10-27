@@ -50,7 +50,7 @@
 - [] import all controllers
 - [] setup three routes
 - [] post('/register') post('/login') get('/logout')
-- [] import authRoutes as authRouter in the app.js
+- [] import authRoutes as authRouter in the 1-intro.js
 - [] setup app.use('/api/v1/auth', authRouter)
 
 #### Test Routes in Postman
@@ -105,7 +105,7 @@
 - [] setup userRoutes file
 - [] import all controllers
 - [] setup just one route - router.route('/').get(getAllUsers);
-- [] import userRoutes as userRouter in the app.js
+- [] import userRoutes as userRouter in the 1-intro.js
 - [] setup app.use('/api/v1/users', userRouter)
 
 #### GetAllUsers and GetSingleUser
@@ -193,7 +193,7 @@
 - [] rest only by admin (setup middlewares)
 - [] typical setup
 - [] router.route('/uploadImage').post(uploadImage)
-- [] import productRoutes as productRouter in the app.js
+- [] import productRoutes as productRouter in the 1-intro.js
 - [] setup app.use('/api/v1/products', productRouter)
 
 #### Product Routes in Postman
@@ -240,7 +240,7 @@
 - [] only getAllReviews and getSingleReview accessible to public
 - [] rest only to users (setup middleware)
 - [] typical REST setup
-- [] import reviewRoutes as reviewRouter in the app.js
+- [] import reviewRoutes as reviewRouter in the 1-intro.js
 - [] setup app.use('/api/v1/reviews', reviewRouter)
 
 #### Create Review
@@ -312,7 +312,7 @@
 - [] getAllOrders admin only
 - [] typical REST setup
 - [] router.route('/showAllMyOrders').get(getCurrentUserOrders)
-- [] import orderRoutes as orderRouter in the app.js
+- [] import orderRoutes as orderRouter in the 1-intro.js
 - [] setup app.use('/api/v1/orders', orderRouter)
 
 #### Order in Postman
@@ -359,11 +359,11 @@
 
 - [] heroku account and heroku cli
 - [] remove/copy from the main repo
-- [] add dev command "nodemon app.js"
-- [] change start to "node app.js"
+- [] add dev command "nodemon 1-intro.js"
+- [] change start to "node 1-intro.js"
 - [] setup node version in package.json
 - [] "engines": {"node": "14.x"}
-- [] Procfile "web: node app.js"
+- [] Procfile "web: node 1-intro.js"
 - [] remove existing git repo
 - [] rm -rf .git - mac,
 - [] git init
