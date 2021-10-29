@@ -1,12 +1,11 @@
-const { readFileSync, writeFileSync } = require('fs')
-console.log('start')
-const first = readFileSync('./content/first.txt', 'utf8')
-const second = readFileSync('./content/second.txt', 'utf8')
+const http = require('http');
 
-writeFileSync(
-    './content/result-sync.txt',
-    `Here is the result : ${first}, ${second}`,
-    { flag: 'a' }
-)
-console.log('done with this task')
-console.log('starting the next one')
+const server = http.createServer((req,res)=>{
+res.write('Welcome to our homepage');
+res.end()
+})
+
+server.listen(3000)
+
+//Port 5000 gave me an error - Error: listen EADDRINUSE: address already in use :::5000
+//Port 3000 worked fine. Read docs- https://nodejs.org/en/docs/guides/getting-started-guide/
