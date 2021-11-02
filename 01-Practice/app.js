@@ -20,7 +20,8 @@ const getText = (path) => {
 const start = async() =>{
     try {                                           // Try and catch block
         const first = await getText('./content/first.txt');
-        console.log(first);
+        const second = await getText('./content/second.txt'); // Added second file
+        console.log(first,second); //Logs out the two files
     } catch (error) {
         console.log(error);
     }}
