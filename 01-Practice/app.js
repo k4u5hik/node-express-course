@@ -12,4 +12,4 @@ server.on('request', (req, res) => {
     res.end('Welcome Kaushik')
 })
 
-server.listen(3000)
+server.listen(3000) // 5000 wasnt working
