@@ -1,15 +1,13 @@
-const http = require('http')
+const {createReadStream} = require('fs');
 
-// const server = http.createServer((req, res) => {
-//   res.end('Welcome')
-// })
+const stream = createReadStream('./content/big.txt');
 
-// Using Event Emitter API
-const server = http.createServer()
-// emits request event
-// subcribe to it / listen for it / respond to it
-server.on('request', (req, res) => {
-    res.end('Welcome Kaushik')
+// default 64kb buffer size
+// last buffer will be smaller as it is the end of the file/remainder.
+// highWaterMark is a property of the stream. Controls how much data is read at a time.
+// const stream = createReadStream('./content/big.txt', {highWaterMark: 90000});
+// const stream = createReadStream('./content/big.txt', {encoding: 'utf8'});
+
+stream.on('data',(result)=>{
+    console.log(result);
 })
-
-server.listen(3000) // 5000 wasnt working
