@@ -1,4 +1,8 @@
 const http = require('http')
+const {readFileSync} = require('fs')
+
+// get all the files in the directory
+const homePage = readFileSync('./index.html')
 
 const server = http.createServer((req, res) => {
   //console.log(req.method, req.url)
@@ -6,8 +10,7 @@ const server = http.createServer((req, res) => {
   //home page
   if (url === '/') {
     res.writeHead(200, {'Content-Type': 'text/html'})   // We provide metadata about the response, 200 means that the request was successful
-    res.write('<h1> Hello World\n </h1>' +
-        'This is my website')                                               // Changed from plain text to html
+    res.write(homePage)                                               // Changed from plain text to html
     res.end()                                                             // We end the response
     console.log('User hit the server')
     //about page
@@ -22,8 +25,6 @@ const server = http.createServer((req, res) => {
     res.write('<h1>404 Page not found</h1>')
     res.end()
   }
-
-
   })
 
 server.listen(3000, () => {
