@@ -2,7 +2,7 @@ const http = require('http')
 const {readFileSync} = require('fs')
 
 // get all the files in the directory
-const homePage = readFileSync('./index.html')
+const homePage = readFileSync('./navbar-app/index.html')
 
 const server = http.createServer((req, res) => {
   //console.log(req.method, req.url)
