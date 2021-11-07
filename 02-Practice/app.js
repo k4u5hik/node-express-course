@@ -38,7 +38,7 @@ const server = http.createServer((req, res) => {
   }
   //logic page
   else if (url === '/browser-app.js'){
-    res.writeHead(200, {'Content-Type': 'application/javascript'})
+    res.writeHead(200, {'Content-Type': 'application/javascript'}) // can be text/javascript
     res.write(homeLogic)
     res.end()
   }
