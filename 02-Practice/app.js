@@ -1,30 +1,19 @@
-const express = require('express');
+const express = require('express')
+const path = require('path')
+
 const app = express()
-const port = 3000
+
+//setup static and middleware
+app.use(express.static('./public'))
 
 app.get('/', (req, res) => {
-  console.log('user hit the resource')
-  res.status(200).send('Home Page')
+  res.sendFile(path.resolve(__dirname, './navbar-app/index.html')); // In this case you can also use path.join()
 })
 
-app.get('/about',(req,res) => {
-  console.log('user hit the resource')
-  res.status(200).send('About Page')
+app.all('*',(req,res)=>{
+    res.status(404).send('404 Resource not found!')
 })
 
-app.all('*',(req,res) => {
-  console.log('user hit the resource')
-  res.status(404).send('<h1> 404 Page - Resource not found!</h1>')
-})
-
-app.listen(port, () => {
-  console.log('Server is running on port 3000');
+app.listen(3000, () => {
+  console.log('Server is running! http://localhost:3000/');
 });
-
-//app.get
-//app.post
-//app.put
-//app.delete
-//app.all
-//app.use
-//app.listen
