@@ -1,21 +1,10 @@
-const express = require('express')
-const path = require('path')
+const express = require('express');
+const app = express();
 
-const app = express()
-
-//setup static and middleware
-app.use(express.static('./public'))
-
-// app.get('/', (req, res) => {
-//   res.sendFile(path.resolve(__dirname, './navbar-app/index.html')); // In this case you can also use path.join()
-// adding to static assets
-// Server side rendering
-// })
-
-app.all('*',(req,res)=>{
-    res.status(404).send('404 Resource not found!')
-})
+app.get('/', (req, res) => {
+  res.json([{name:'john'}, {name:'jane'}, {name:'joe'},]);
+});
 
 app.listen(3000, () => {
-  console.log('Server is running! http://localhost:3000/');
+    console.log('Server is running on port 3000 http://localhost:3000');
 });
