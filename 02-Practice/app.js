@@ -6,9 +6,11 @@ const app = express()
 //setup static and middleware
 app.use(express.static('./public'))
 
-app.get('/', (req, res) => {
-  res.sendFile(path.resolve(__dirname, './navbar-app/index.html')); // In this case you can also use path.join()
-})
+// app.get('/', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, './navbar-app/index.html')); // In this case you can also use path.join()
+// adding to static assets
+// Server side rendering
+// })
 
 app.all('*',(req,res)=>{
     res.status(404).send('404 Resource not found!')
