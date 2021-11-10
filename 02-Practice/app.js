@@ -14,6 +14,15 @@ app.get('/api/products', (req, res) => {
   res.json(newProducts)
 });
 
+app.get('/api/products/:productID', (req, res) => {
+//    console.log(req.params.productID)
+    const {productID} = req.params;
+    const singleProduct = products.find((product)=>{
+        return product.id === Number(productID)
+    })
+    res.json(singleProduct)
+});
+
 app.listen(3000, () => {
     console.log('Server is running on port 3000 http://localhost:3000');
 });
