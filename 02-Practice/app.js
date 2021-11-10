@@ -26,6 +26,11 @@ app.get('/api/products/:productID', (req, res) => {
     return res.json(singleProduct)
 });
 
+app.get('/api/products/:productID/reviews/:reviewID', (req, res) => {
+       console.log(req.params)
+        res.send('Hello World!')
+});
+
 app.listen(3000, () => {
     console.log('Server is running on port 3000 http://localhost:3000');
 });
