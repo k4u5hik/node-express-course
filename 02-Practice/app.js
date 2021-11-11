@@ -28,9 +28,16 @@ app.get('/api/products/:productID', (req, res) => {
 
 app.get('/api/products/:productID/reviews/:reviewID', (req, res) => {
        console.log(req.params)
-        res.send('Hello World!')
+        res.send('Hello World!') // http://localhost:3000/api/products/1/reviews/1
 });
 
+app.get('/api/v1/query',(req,res)=>{
+    console.log(req.query)
+    res.send('Hello World!')
+})
+
+// http://localhost:3000/api/v1/query?name=john&id=4 , Terminal { name: 'john', id: '4' }
+// http://localhost:3000/api/v1/query?search=a&limit=2, Terminal { search: 'a', limit: '2' }
 app.listen(3000, () => {
     console.log('Server is running on port 3000 http://localhost:3000');
 });
