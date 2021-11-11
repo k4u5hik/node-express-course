@@ -32,8 +32,19 @@ app.get('/api/products/:productID/reviews/:reviewID', (req, res) => {
 });
 
 app.get('/api/v1/query',(req,res)=>{
-    console.log(req.query)
-    res.send('Hello World!')
+    // console.log(req.query)
+    const {search, limit} = req.query
+    let sortedProducts = [...products]
+
+    if (search){
+        sortedProducts = sortedProducts.filter((product)=>{
+            return product.name.startsWith(search)
+        })
+    }
+    if (limit){
+        sortedProducts = sortedProducts.slice(0,limit)
+    }
+    res.status(200).json(sortedProducts)
 })
 
 // http://localhost:3000/api/v1/query?name=john&id=4 , Terminal { name: 'john', id: '4' }
