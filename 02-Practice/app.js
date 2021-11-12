@@ -11,7 +11,7 @@ const morgan = require('morgan')
 // use vs route
 // options - your own/ express / third party
 
-app.use([morgan('tiny')])
+app.use([morgan('combined')])
 
 app.get('/',(req, res) => {
   res.send('Home')
