@@ -20,9 +20,22 @@ app.get('/api/people', (req, res) => {
 app.post('/api/people', (req, res) => {
     const {name} = req.body
     if (!name) {
-      return res.status(400).json({success:false, error: 'Name is required'})
+      return res
+          .status(400)
+          .json({success:false, msg: 'Name is required'})
     }
-  res.status(201).json({success:true, person: name})
+  res.status(201).send({success:true, person: name})
+})
+
+// Adding another post method on a different route to test on postman
+app.post('/api/postman/people', (req, res) => {
+  const {name} = req.body
+  if (!name) {
+    return res
+        .status(400)
+        .json({success:false, msg: 'Name is required'})
+  }
+  res.status(201).send({success:true, data: [...people, name]})
 })
 
 // POST METHOD
