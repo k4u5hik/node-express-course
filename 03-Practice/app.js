@@ -7,4 +7,10 @@ app.get('/hello', ((req, res) => {
     res.send('Task Manager App!');
 }));
 
-app.listen(port, () => console.log(`Task Manager app listening on port ${port}! http://localhost:3000`));
+// get all tasks
+// create a new task
+// get single task
+// update task
+// delete task
+
+app.listen(port, () => console.log(`Task Manager app listening on port ${port}! http://localhost:${port}`));
