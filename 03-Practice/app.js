@@ -20,6 +20,3 @@ app.use('/api/v1/tasks', tasks)
 // app.delete('/api/v1/tasks/:id') delete task
 
 app.listen(port, () => console.log(`Task Manager app listening on port ${port}! http://localhost:${port}`));
-
-//Testing if the commit is verified
-// [remote rejected] (push declined due to email privacy restrictions) - Settings hanged on github
