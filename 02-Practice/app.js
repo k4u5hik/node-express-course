@@ -49,6 +49,7 @@ app.post('/login', ((req, res) => {
     res.send('POST')
 }))
 
+//PUT METHOD
 app.put('/api/people/:id', (req, res) => {
   const {id} = req.params
   const {name} = req.body
@@ -63,6 +64,21 @@ app.put('/api/people/:id', (req, res) => {
       return person
     })
     res.status(200).json({success: true, data: newPeople})
+})
+
+//DELETE METHOD
+app.delete('/api/people/:id', (req, res) => {
+  const id = req.params.id
+  const person = people.find(person => person.id === Number(id))
+  if (!person) {
+    return res
+        .status(404)
+        .json({success: false, msg: `Person not found with id ${id}`})
+  }
+  const newPeople = people.filter(person => person.id !== Number(id))
+    return res
+        .status(200)
+        .json({success: true, data: newPeople})
 })
 
 app.listen(3000, () => {
