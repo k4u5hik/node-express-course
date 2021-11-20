@@ -31,8 +31,17 @@ const getTask = async (req, res) => {
     res.status(500).json({msg: error})
   }
 }
-const updateTask = (req, res) => {
-  res.send('update task')
+const updateTask = async (req, res) => {
+  try {
+    const {id:taskID} = req.params
+    const task = await Task.findOneAndUpdate({_id: taskID}, req.body, {new: true, runValidators:true}) // new: true returns the updated document
+    if(!task){
+      return res.status(404).json({msg: `Task id: ${taskID} not found`})
+    }
+    res.status(200).json({task})
+  } catch (error) {
+    res.status(500).json({msg: error})
+  }
 }
 const deleteTask = async (req, res) => {
   try {
