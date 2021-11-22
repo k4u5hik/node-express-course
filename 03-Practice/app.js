@@ -26,5 +26,3 @@ const start = async () => {
 }
 
 start()
-
-// Put vs Patch - Read the commit comment
