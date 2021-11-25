@@ -1,15 +1,13 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-//Schema
 const productSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true,'Product name is required'],
-    trim: true,
+    required: [true, 'product name must be provided'],
   },
   price: {
     type: Number,
-    required: [true,'Product price is required'],
+    required: [true, 'product price must be provided'],
   },
   featured: {
     type: Boolean,
@@ -21,15 +19,16 @@ const productSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now,
+    default: Date.now(),
   },
   company: {
     type: String,
     enum: {
       values: ['ikea', 'liddy', 'caressa', 'marcos'],
-      message: '{VALUE} is not a company we have',
+      message: '{VALUE} is not supported',
     },
-    //enum: ['ikea', 'liddy', 'caressa', 'marcos'],
+    // enum: ['ikea', 'liddy', 'caressa', 'marcos'],
   },
-});
-module.exports = mongoose.model('Product', productSchema);
+})
+
+module.exports = mongoose.model('Product', productSchema)
