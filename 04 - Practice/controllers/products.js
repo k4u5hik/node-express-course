@@ -1,8 +1,9 @@
 const Product = require('../models/product');
 
 const getAllProductsStatic = async (req, res) => {
+  const search = 'ab'
   const products = await Product.find({
-    name: 'albany sectional'
+    name: { $regex: search, $options: 'i' }
   });
   res.status(200).json({products, nbHits: products.length});
 };
