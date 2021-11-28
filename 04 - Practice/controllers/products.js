@@ -5,8 +5,7 @@ const getAllProductsStatic = async (req, res) => {
       .find({})
       .sort('name')
       .select('name price')
-      .limit(10)
-      .skip(1);
+
   res.status(200).json({products, nbHits: products.length});
 };
 
@@ -37,6 +36,14 @@ const getAllProducts = async (req, res) => {
     const fieldsList = fields.split(',').join(' ');
     result = result.select(fieldsList)
   }
+
+  const page = Number(req.query.page) || 1; // if page is not defined, set to 1
+  const limit = Number(req.query.limit) || 10 // if limit is not defined, it will be 10
+  const skip = (page - 1) * limit; // skip is the number of products to skip
+  result = result.limit(limit).skip(skip);
+
+  // We will have 4 pages - 7,7,7,2 , Total 23 products OR
+  // We have 23 products, we want to display 10 products per page, so we have 3 pages
 
   const products = await result
   res.status(200).json({products, nbHits: products.length});
