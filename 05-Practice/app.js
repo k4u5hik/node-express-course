@@ -19,7 +19,7 @@ const port = process.env.PORT || 3000;
 const start = async () => {
   try {
     app.listen(port, () =>
-      console.log(`Server is listening on port ${port}...`)
+      console.log(`Server is listening http://localhost:${port}`)
     );
   } catch (error) {
     console.log(error);
@@ -27,3 +27,5 @@ const start = async () => {
 };
 
 start();
+
+// Lesson 151 - Read commit message
