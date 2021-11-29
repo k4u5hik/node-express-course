@@ -50,7 +50,6 @@ const getAllProducts = async (req, res) => {
   } else {
     result = result.sort('createAt')
   }
-
   if (fields) {
     const fieldsList = fields.split(',').join(' ')
     result = result.select(fieldsList)
