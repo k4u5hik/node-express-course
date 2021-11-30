@@ -41,7 +41,7 @@ formDOM.addEventListener('submit', async (e) => {
   }, 2000)
 })
 
-btnDOM.addEventListener('click', async () => { //Lesson 159 - Bearer Token
+btnDOM.addEventListener('click', async () => {
   const token = localStorage.getItem('token')
   try {
     const { data } = await axios.get('/api/v1/dashboard', {
