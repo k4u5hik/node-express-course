@@ -30,4 +30,3 @@ const start = async () => {
 
 start();
 
-// Lesson 153 - Postman Setup - Read commit message
