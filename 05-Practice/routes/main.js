@@ -3,7 +3,9 @@ const router = express.Router();
 
 const {login,dashboard}=require('../controllers/main');
 
-router.route('/dashboard').get(dashboard);
+const authMiddleware = require('../middleware/auth');
+
+router.route('/dashboard').get(authMiddleware, dashboard); //everytime we access this route, we will run the authMiddleware function
 router.route('/login').post(login);
 
 module.exports = router;
