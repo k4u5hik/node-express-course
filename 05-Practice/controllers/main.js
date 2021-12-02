@@ -5,7 +5,7 @@
 // setup authentication so only the request with JWT can access the dashboard route
 
 const jwt = require('jsonwebtoken');
-const CustomAPIError = require('../errors/custom-error');
+const {BadRequestError} = require('../errors');
 
 const login = async (req,res) => {
     const {username, password} = req.body;
@@ -16,7 +16,7 @@ const login = async (req,res) => {
 
     // check if username and password exist
     if (!username || !password) {
-        throw new CustomAPIError('Username or password is missing', 400)
+        throw new BadRequestError('Username or password is missing')
     }
     //just for demo, normally provided by the DB
     const id = new Date().getTime()
@@ -28,7 +28,7 @@ const login = async (req,res) => {
 }
 
 const dashboard = async (req,res) => {
-    console.log(req.user)
+
     const luckyNumber = Math.floor(Math.random() * 100)
     res
         .status(200)
