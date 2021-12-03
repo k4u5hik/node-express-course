@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 
 const start = async () => {
   try {
@@ -32,4 +32,4 @@ const start = async () => {
 
 start();
 
-// Read the commit message
+// Lesson 169 - Read the commit message
