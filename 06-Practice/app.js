@@ -18,12 +18,12 @@ app.get('/', (req, res) => {
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 const start = async () => {
   try {
     app.listen(port, () =>
-      console.log(`Server is listening on port ${port}...`)
+      console.log(`Server is listening on port http://localhost:${port}`)
     );
   } catch (error) {
     console.log(error);
@@ -31,3 +31,5 @@ const start = async () => {
 };
 
 start();
+
+// Read the commit message
