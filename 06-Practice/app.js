@@ -38,5 +38,3 @@ const start = async () => {
 };
 
 start();
-
-// Lesson 169 - Read the commit message
