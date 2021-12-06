@@ -1,6 +1,6 @@
 const User = require('../models/user');
 const {StatusCodes} = require('http-status-codes');
-const {BadRequestError} = require('../errors');
+const {BadRequestError, UnauthenticatedError} = require('../errors');
 
 const register = async (req, res) => {
     const user = await User.create({...req.body});
@@ -10,7 +10,21 @@ const register = async (req, res) => {
         .json({user:{name: user.name},token}); // you get the token in the frontend, you can also opt to get back the name and email
 }
 const login = async (req, res) => {
-    res.send('login');
+    const {email, password} = req.body;
+
+    if (!email || !password) {
+        throw new BadRequestError('Please provide email and password');
+    }
+    const user = await User.findOne({email});
+
+    //compare password
+    if(!user){
+        throw new UnauthenticatedError('Invalid credentials');
+    }
+    const token = user.createJWT();
+    res
+        .status(StatusCodes.OK)
+        .json({user:{name: user.name},token});
 }
 
 module.exports = {
