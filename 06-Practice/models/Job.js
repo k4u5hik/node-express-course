@@ -6,12 +6,12 @@ const JobSchema = new mongoose.Schema({
     required: [true, 'Company is required'],
       maxlength: [50, 'Company name must be less than 50 characters'],
   },
-  Position: {
+  position: {
     type: String,
     required: [true, 'Position is required'],
       maxlength: [50, 'Position name must be less than 50 characters'],
   },
-  Status: {
+  status: {
     type: String,
     enum: ['Interview', 'Declined', 'Pending'],
     default: 'Pending',
