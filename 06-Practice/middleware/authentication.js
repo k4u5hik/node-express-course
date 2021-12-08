@@ -6,7 +6,7 @@ const auth = async (req,res,next) => {
     //TODO: check header
     const authHeader = req.headers.authorization
     if(!authHeader || !authHeader.startsWith('Bearer')){
-    throw new UnauthenticatedError('Authentication invalid');
+    throw new UnauthenticatedError('Authentication invalid Type 1');
     }
 
 const token= authHeader.split(' ')[1];
@@ -16,7 +16,7 @@ const token= authHeader.split(' ')[1];
         req.user = {userId: payload.userId, name:payload.name}
         next()
     } catch (error) {
-        throw new UnauthenticatedError('Authentication invalid');
+        throw new UnauthenticatedError('Authentication invalid Type 2');
     }
 }
 
