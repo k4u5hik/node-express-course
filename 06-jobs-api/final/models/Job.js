@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 
-const JobSchema = new mongoose.Schema(
-  {
+const JobSchema = new mongoose.Schema({
     company: {
       type: String,
       required: [true, 'Please provide company name'],
@@ -22,8 +21,6 @@ const JobSchema = new mongoose.Schema(
       ref: 'User',
       required: [true, 'Please provide user'],
     },
-  },
-  { timestamps: true }
-)
+  }, { timestamps: true })
 
 module.exports = mongoose.model('Job', JobSchema)
