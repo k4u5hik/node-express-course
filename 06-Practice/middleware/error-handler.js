@@ -34,5 +34,3 @@ if (err.name === 'ValidationError') {
 }
 
 module.exports = errorHandlerMiddleware
-
-// Lesson 198 - Read commit message
