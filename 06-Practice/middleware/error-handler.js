@@ -24,7 +24,12 @@ if (err.name === 'ValidationError') {
     customError.msg = `Duplicate values, ${Object.keys(err.keyValue)} already exists`
     customError.statusCode = 400
   }
-  return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err })
+  if(err.name === 'CastError'){
+    customError.msg = `No item found with ID ${err.value}`
+    customError.statusCode = 400
+  }
+
+  //eturn res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err })
   return res.status(customError.statusCode).json({ msg: customError.msg })
 }
 
