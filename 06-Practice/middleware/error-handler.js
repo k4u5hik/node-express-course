@@ -12,11 +12,13 @@ let customError = {
     return res.status(err.statusCode).json({ msg: err.message })
   }*/
 
+
+
   if (err.code && err.code === 11000) {
     customError.msg = `Duplicate values, ${Object.keys(err.keyValue)} already exists`
     customError.statusCode = 400
   }
-  //return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err })
+  return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err })
   return res.status(customError.statusCode).json({ msg: customError.msg })
 }
 
