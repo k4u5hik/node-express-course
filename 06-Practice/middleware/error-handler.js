@@ -12,13 +12,19 @@ let customError = {
     return res.status(err.statusCode).json({ msg: err.message })
   }*/
 
-
+if (err.name === 'ValidationError') {
+  console.log(Object.values(err.errors)) // We get back an array of error objects seperated by commas
+  customError.msg = Object.values(err.errors)
+      .map((item)=>item.message)
+      .join(',')
+  customError.statusCode = 400
+}
 
   if (err.code && err.code === 11000) {
     customError.msg = `Duplicate values, ${Object.keys(err.keyValue)} already exists`
     customError.statusCode = 400
   }
-  return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err })
+  //return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err })
   return res.status(customError.statusCode).json({ msg: customError.msg })
 }
 
