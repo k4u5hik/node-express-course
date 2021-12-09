@@ -24,7 +24,7 @@ if (err.name === 'ValidationError') {
     customError.msg = `Duplicate values, ${Object.keys(err.keyValue)} already exists`
     customError.statusCode = 400
   }
-  //return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err })
+  return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err })
   return res.status(customError.statusCode).json({ msg: customError.msg })
 }
 
