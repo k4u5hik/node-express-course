@@ -65,4 +65,4 @@ const start = async () => {
 
 start();
 
-// Lesson 205 - read commit message
+// Lesson 206,7 - Read commit messages
