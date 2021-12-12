@@ -7,6 +7,11 @@ const cors = require('cors');
 const xss = require('xss-clean');
 const rateLimiter = require('express-rate-limit');
 
+// Swagger documentation
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./swagger.yaml');
+
 const express = require('express');
 const app = express();
 
@@ -39,9 +44,12 @@ app.use(helmet());
 app.use(cors());
 app.use(xss());
 
+
 app.get('/', (req, res) => {
-  res.send('Hello World');
+  res.send('<h1>jobs API</h1><a href="/api-docs">Swagger Documentation</a>');
 });
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 
 // routes
 app.use('/api/v1/auth', authRouter);
@@ -65,4 +73,4 @@ const start = async () => {
 
 start();
 
-// Lesson 206,7 - Read commit messages
+// Lesson 208-9 - Read commit messages.
