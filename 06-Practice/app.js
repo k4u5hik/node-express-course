@@ -73,4 +73,4 @@ const start = async () => {
 
 start();
 
-// Jobs API Completed
+// commit verification check
