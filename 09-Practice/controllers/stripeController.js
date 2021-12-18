@@ -1,6 +1,20 @@
-const stripe = async (req,res)=>{
-    console.log(req.body);
-    res.send('stripe route');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
+const stripeController = async (req,res)=>{
+    const {purchase, total_amount,shipping_fee} = req.body;
+    //console.log(req.body);
+
+    const calculateOrderAmount = () => {
+    return total_amount + shipping_fee;
+
+    }
+    const paymentIntent = await stripe.paymentIntents.create({
+        amount: calculateOrderAmount(),
+        currency: 'usd'
+    });
+    console.log(paymentIntent);
+    res.json({client_secret:paymentIntent.client_secret});
 }
 
-module.exports = stripe;
+module.exports = stripeController;
+
