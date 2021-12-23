@@ -1,7 +1,12 @@
 const User = require('../models/user');
+const {StatusCodes} = require('http-status-codes');
+const CustomError = require('../errors');
 
 const register = async (req, res) => {
-    res.send('Registered');
+    const user = await User.create((req.body))
+    res
+        .status(StatusCodes.CREATED)
+        .json({user});
 };
 
 const login = async (req, res) => {
