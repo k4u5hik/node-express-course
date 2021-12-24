@@ -30,3 +30,5 @@ const UserSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('User', UserSchema);
+
+// Line 16 - email validation
