@@ -3,6 +3,7 @@ const {StatusCodes} = require('http-status-codes');
 const CustomError = require('../errors');
 const {createJWT} = require('../utils/jwt');
 
+
 const register = async (req, res) => {
     const {name,email,password} = req.body;
     const emailExists = await User.findOne({email});
