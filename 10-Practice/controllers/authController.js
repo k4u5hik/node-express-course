@@ -22,11 +22,30 @@ const register = async (req, res) => {
         role: user.role
     };
     attachCookiesToResponse({res, user:tokenUser});
-    //res.status(StatusCodes.CREATED).json({user:tokenUser});
+    res.status(StatusCodes.CREATED).json({user:tokenUser});
 }
 const login = async (req, res) => {
-    res.send('Logged in');
-};
+    const {email, password} = req.body;
+    if (!email || !password) {
+        throw new CustomError.BadRequestError('Email and password are required');
+    }
+    const user = await User.findOne({email});
+    if (!user) {
+        throw new CustomError.UnauthenticatedError('Invalid email or password');
+    }
+    const isPasswordValid = await user.comparePassword(password);
+    if (!isPasswordValid) {
+        throw new CustomError.UnauthenticatedError('Invalid email or password');
+    }
+    const tokenUser = {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role
+    };
+    attachCookiesToResponse({res, user:tokenUser});
+    res.status(StatusCodes.CREATED).json({user:tokenUser});
+}
 
 const logout = async (req, res) => {
     res.send('Logged out');
