@@ -2,6 +2,7 @@ const User = require('../models/user');
 const {StatusCodes} = require('http-status-codes');
 const CustomError = require('../errors');
 const {attachCookiesToResponse} = require('../utils');
+const {token} = require("morgan");
 
 
 const register = async (req, res) => {
