@@ -11,7 +11,6 @@ const {
 
 router.route('/').get(getAllUsers);
 
-
 router.route('/showMe').get(showCurrentUser);//if the location from above :id to below it, it shows showMe as the current user. We don't want that.
 router.route('/updateUser').patch(updateUser);
 router.route('/updateUserPassword').patch(updateUserPassword);
