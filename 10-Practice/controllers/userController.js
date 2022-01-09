@@ -3,10 +3,11 @@ const {StatusCodes} = require('http-status-codes');
 const CustomError = require('../errors');
 
 const getAllUsers = async (req, res) => {
-  console.log(req.user)
-  const users = await User.find({role: 'user'}).select('-password'); // removes password from response
-  res.status(StatusCodes.OK).json({users});
+  console.log(req.user);
+  const users = await User.find({ role: 'user' }).select('-password');
+  res.status(StatusCodes.OK).json({ users });
 };
+
 const getSingleUser = async (req, res) => {
   const user = await User.findOne({_id: req.params.id}).select('-password');
   if (!user) {
@@ -30,8 +31,8 @@ const updateUserPassword = async (req, res) => {
   }
   const user = await User.findOne({ _id: req.user.userId });
 
-  const isPasswordCorrect = await user.comparePassword(oldPassword);
-  if (!isPasswordCorrect) {
+  const isPasswordValid = await user.comparePassword(oldPassword);
+  if (!isPasswordValid) {
     throw new CustomError.UnauthenticatedError('Invalid Credentials');
   }
   user.password = newPassword;

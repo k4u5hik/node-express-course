@@ -17,7 +17,7 @@ const register = async (req, res) => {
 
     const user = await User.create({name, email, password, role});
     const tokenUser = {
-        _id: user._id,
+        userId: user._id,
         name: user.name,
         email: user.email,
         role: user.role
@@ -39,7 +39,7 @@ const login = async (req, res) => {
         throw new CustomError.UnauthenticatedError('Invalid email or password');
     }
     const tokenUser = {
-        _id: user._id,
+        userId: user._id,
         name: user.name,
         email: user.email,
         role: user.role
