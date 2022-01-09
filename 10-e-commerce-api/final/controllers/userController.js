@@ -8,7 +8,7 @@ const {
 } = require('../utils');
 
 const getAllUsers = async (req, res) => {
-  console.log(req.user);
+  //console.log(req.user);
   const users = await User.find({ role: 'user' }).select('-password');
   res.status(StatusCodes.OK).json({ users });
 };
@@ -48,6 +48,10 @@ const updateUserPassword = async (req, res) => {
     throw new CustomError.BadRequestError('Please provide both values');
   }
   const user = await User.findOne({ _id: req.user.userId });
+
+  if (!user.comparePassword(oldPassword)) {
+    throw new CustomError.BadRequestError('Incorrect password');
+  }
 
   const isPasswordCorrect = await user.comparePassword(oldPassword);
   if (!isPasswordCorrect) {
