@@ -1,8 +1,7 @@
 const User = require('../models/User');
 const {StatusCodes} = require('http-status-codes');
 const CustomError = require('../errors');
-const {attachCookiesToResponse} = require('../utils');
-const {token} = require("morgan");
+const {attachCookiesToResponse,createTokenUser} = require('../utils');
 
 
 const register = async (req, res) => {
@@ -16,12 +15,7 @@ const register = async (req, res) => {
     const role = isFirstAccount ? 'admin' : 'user'; // if true, then admin, else user
 
     const user = await User.create({name, email, password, role});
-    const tokenUser = {
-        userId: user._id,
-        name: user.name,
-        email: user.email,
-        role: user.role
-    };
+    const tokenUser = createTokenUser(user);
     attachCookiesToResponse({res, user:tokenUser});
     res.status(StatusCodes.CREATED).json({user:tokenUser});
 }
@@ -38,12 +32,7 @@ const login = async (req, res) => {
     if (!isPasswordValid) {
         throw new CustomError.UnauthenticatedError('Invalid email or password');
     }
-    const tokenUser = {
-        userId: user._id,
-        name: user.name,
-        email: user.email,
-        role: user.role
-    };
+    const tokenUser = createTokenUser(user);
     attachCookiesToResponse({res, user:tokenUser});
     res.status(StatusCodes.CREATED).json({user:tokenUser});
 }
