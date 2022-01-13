@@ -9,11 +9,17 @@ const createProduct = async (req, res) => {
 };
 
 const getAllProducts = async (req, res) => {
-  res.send('getAllProducts');
+  console.log(req.user);
+  const products = await Product.find({})
+  res.status(StatusCodes.OK).json({products, count: products.length});
 };
 
 const getSingleProduct = async (req, res) => {
-  res.send('getSingleProduct');
+  const product = await Product.findById(req.params.id);
+  if (!product) {
+    throw new CustomError(StatusCodes.NOT_FOUND, 'Product not found');
+  }
+  res.status(StatusCodes.OK).json({product});
 };
 
 const updateProduct = async (req, res) => {
