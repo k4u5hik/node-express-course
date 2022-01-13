@@ -13,7 +13,7 @@ const {
 
 router.route('/')
     .get(getAllProducts)
-    .post(authenticateUser, authorisePermissions, createProduct);
+    .post([authenticateUser, authorisePermissions('admin')], createProduct);
 
 router.route('/:id/uploadImage')
     .put(authenticateUser, authorisePermissions, uploadImage);
