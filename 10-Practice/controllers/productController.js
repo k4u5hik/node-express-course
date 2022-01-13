@@ -15,11 +15,12 @@ const getAllProducts = async (req, res) => {
 };
 
 const getSingleProduct = async (req, res) => {
-  const product = await Product.findById(req.params.id);
+  const {id: productId} = req.params;
+  const product = await Product.findById({_id: productId});
   if (!product) {
-    throw new CustomError(StatusCodes.NOT_FOUND, 'Product not found');
+    throw new CustomError.NotFoundError(`Product with id ${productId} not found`);
   }
-  res.status(StatusCodes.OK).json({product});
+  res.status(StatusCodes.OK).json({product})
 };
 
 const updateProduct = async (req, res) => {
