@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const {authenticateUser, authorisePermissions} = require('../middleware/authentication');
+const {
+    authenticateUser,
+    authorisePermissions
+} = require('../middleware/authentication');
 
 const {
     createProduct,
@@ -23,8 +26,8 @@ router
 router
     .route('/:id')
     .get(getSingleProduct)
-    .patch(authenticateUser, authorisePermissions, updateProduct)
-    .delete(authenticateUser, authorisePermissions, deleteProduct);
+    .patch([authenticateUser, authorisePermissions('admin')], updateProduct)
+    .delete([authenticateUser, authorisePermissions('admin')], deleteProduct);
 
 
 module.exports = router;
