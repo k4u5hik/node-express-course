@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
-const bcrypt = require('bcryptjs');
+
 
 const ProductSchema = new mongoose.Schema({
     name: {
@@ -25,7 +24,7 @@ const ProductSchema = new mongoose.Schema({
     },
     image: {
         type: String,
-        required: [true, 'Please add an image'],
+        required: [false, 'Please add an image'],
         trim: true,
     },
     category: {
@@ -46,7 +45,7 @@ const ProductSchema = new mongoose.Schema({
     colours: {
         type: [String],
         required: [true, 'Please add at least one colour'],
-        default: ['#000000'],
+        default: ['Black'],
         enum: {
             values: ['Black', 'White', 'Red', 'Blue', 'Green', 'Yellow', 'Purple', 'Orange', 'Pink', 'Other'],
             message: '{VALUE} is not supported'
@@ -61,19 +60,22 @@ const ProductSchema = new mongoose.Schema({
         default: false,
     },
     inventory: {
-        type: Number,
-        required: [true, 'Please add an inventory'],
-        default: 0,
-        min: [0, 'Inventory must be greater than 0'],
+      type: Number,
+      required: true,
+      default: 15,
     },
     averageRating: {
-        type: Number,
-        default: 0,
+      type: Number,
+      default: 0,
+    },
+    numOfReviews: {
+      type: Number,
+      default: 0,
     },
     user: {
-        type: mongoose.Types.ObjectId,
-        ref: 'User',
-        required: true,
+      type: mongoose.Types.ObjectId,
+      ref: 'User',
+      required: true,
     },
 },
     {timestamps: true}
