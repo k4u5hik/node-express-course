@@ -84,10 +84,28 @@ const deleteReview = async (req, res) => {
     res.status(StatusCodes.OK).json({message: 'Review deleted successfully'});
 }
 
+const getSingleProductReviews = async (req, res) => {
+    const {id: productId} = req.params;
+    const reviews = await Review.find({product: productId})
+        .populate({
+            path: 'product',
+            select: 'name company price'
+        })
+        .populate({
+            path: 'user',
+            select: 'name'
+        });
+    if (!reviews) {
+        throw new CustomError.NotFoundError(`Review with id ${reviewId} does not exist`);
+    }
+    res.status(StatusCodes.OK).json({reviews,count: reviews.length});
+}
+
 module.exports = {
     createReview,
     getAllReviews,
     getSingleReview,
     updateReview,
-    deleteReview
+    deleteReview,
+    getSingleProductReviews
 }
