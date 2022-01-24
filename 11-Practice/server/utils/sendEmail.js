@@ -8,10 +8,10 @@ const sendEmail = async({to, subject, html})=>{
 
     // send mail with defined transport object
     return transporter.sendMail({
-        from: '"Kaushik Chemburkar 👻" <attherate@gmail.com>', // sender address
-        to, // list of receivers
-        subject, // Subject line
-        html, // html body
+        from: '"Kaushik Chemburkar 👻" <attherate@gmail.com>',
+        to,
+        subject,
+        html,
     });
 }
 
