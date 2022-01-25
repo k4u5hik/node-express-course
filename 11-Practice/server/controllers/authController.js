@@ -20,7 +20,7 @@ const register = async (req, res) => {
 
   const user = await User.create({name, email, password, role, verificationToken});
 
-  const origin = 'http://localhost:5000';
+  const origin = 'http://localhost:3000';
   await sendVerificationEmail({
     name:user.name,
     email: user.email,
@@ -38,7 +38,7 @@ const verifyEmail = async (req,res)=>{
   const {verificationToken,email} = req.body;
   const user = await User.findOne({email});
   if(!user){
-    throw new CustomError.UnauthenticatedError('Invalid verification token');
+    throw new CustomError.UnauthenticatedError('Error: No user found');
   }
   if(user.verificationToken !== verificationToken){
     throw new CustomError.UnauthenticatedError('Invalid verification token');
