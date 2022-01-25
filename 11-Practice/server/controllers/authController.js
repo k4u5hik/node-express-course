@@ -21,6 +21,24 @@ const register = async (req, res) => {
   const user = await User.create({name, email, password, role, verificationToken});
 
   const origin = 'http://localhost:3000';
+  //const newOrigin = 'https://react-node-user-workflow-front-end.netlify.com'; // production url
+
+  const tempOrigin = req.get('origin')
+  console.log(`origin: ${tempOrigin}`)
+
+  const protocol = req.protocol;
+  console.log(`protocol: ${protocol}`);
+  const host = req.get('host');
+  console.log(`host: ${host}`);
+
+  const forwardedHost = req.headers['x-forwarded-host'];
+  const forwardedProtocol = req.headers['x-forwarded-proto'];
+
+  console.log(`forwardedHost: ${forwardedHost}`);
+  console.log(`forwardedProtocol: ${forwardedProtocol}`);
+
+  console.log(req);
+
   await sendVerificationEmail({
     name:user.name,
     email: user.email,
