@@ -69,4 +69,4 @@ const start = async () => {
 
 start();
 
-// Lesson 321 - Read commit - Error Resolved
+// Lesson 321 - Read commit - Git Issue
