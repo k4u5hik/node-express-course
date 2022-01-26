@@ -86,6 +86,23 @@ const login = async (req, res) => {
   let refreshToken = '';
 
   // check for existing token
+  const exitingToken = await Token.findOne({ user: user._id });
+  if (exitingToken) {
+    const {isValid} = exitingToken;
+    if (!isValid) {
+      throw new CustomError.UnauthenticatedError('Invalid refresh token');
+    }
+    refreshToken = exitingToken.refreshToken;
+    attachCookiesToResponse({res, user: tokenUser, refreshToken});
+    res.status(StatusCodes.OK).json({
+      msg: 'Successfully logged in',
+      user: tokenUser,
+      refreshToken
+    });
+    return
+}
+
+
   refreshToken = crypto.randomBytes(40).toString('hex');
   const userAgent = req.headers['user-agent'];
   const ip = req.ip
