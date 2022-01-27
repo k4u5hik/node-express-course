@@ -66,16 +66,16 @@ const login = async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    throw new CustomError.BadRequestError('Please provide email and password');
+    throw new CustomError.BadRequestError('Please provide email and/or password');
   }
   const user = await User.findOne({ email });
 
   if (!user) {
-    throw new CustomError.UnauthenticatedError('Invalid Credentials');
+    throw new CustomError.UnauthenticatedError('Invalid User');
   }
   const isPasswordCorrect = await user.comparePassword(password);
   if (!isPasswordCorrect) {
-    throw new CustomError.UnauthenticatedError('Invalid Credentials');
+    throw new CustomError.UnauthenticatedError('Invalid Password');
   }
   if (!user.isVerified){
     throw new CustomError.UnauthenticatedError('Please verify your email!');
@@ -159,6 +159,23 @@ const forgotPassword = async (req,res)=> {
 }
 
 const resetPassword = async (req,res)=> {
+  const {token,email,password} = req.body;
+  if (!token || !email || !password) {
+    throw new CustomError.BadRequestError('Please provide token, email and password');
+  }
+
+  const user = await User.findOne({email});
+
+  if (user){
+    const currentDate = new Date();
+
+    if (user.passwordToken === token && user.passwordTokenExpirationDate > currentDate) {
+      user.password = password
+      user.passwordToken = null;
+      user.passwordTokenExpirationDate = null;
+      await user.save();
+    }
+  }
   res.send('reset password')
 }
 
