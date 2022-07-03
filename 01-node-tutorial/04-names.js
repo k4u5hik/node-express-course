@@ -4,4 +4,4 @@ const secret = 'SUPER SECRET'
 const john = 'john'
 const peter = 'peter'
 
-module.exports = { john, peter } // We share onlt these two while keeping secret local
+module.exports = { john, peter } // We share only these two while keeping secret local
