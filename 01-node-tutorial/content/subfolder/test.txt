@@ -1,1 +1,1 @@
-test txt
+This is the content from the text file.

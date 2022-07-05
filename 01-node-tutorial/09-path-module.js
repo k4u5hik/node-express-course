@@ -10,3 +10,16 @@ console.log(base)
 
 const absolute = path.resolve(__dirname, 'content', 'subfolder', 'test.txt')
 console.log(absolute)
+
+const normalize = path.normalize(filePath)
+console.log(normalize)
+
+// this is good
+const parse = path.parse(filePath)
+console.log(parse)
+
+const posix = path.posix.normalize(filePath)
+console.log(posix)
+
+const resolve = path.resolve(__dirname, 'content', 'subfolder', 'test.txt')
+console.log(resolve)
