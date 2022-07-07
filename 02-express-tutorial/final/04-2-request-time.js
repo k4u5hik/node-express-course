@@ -9,8 +9,9 @@ const requestTime = function (req, res, next) {
 app.use(requestTime)
 
 app.get('/', (req, res) => {
+  const newDate = new Date(req.requestTime)
   let responseText = 'Hello World!<br>'
-  responseText += `<small>Requested at: ${req.requestTime}</small>`
+  responseText += `<small>Requested at: ${newDate}</small>`
   res.send(responseText)
 })
 
