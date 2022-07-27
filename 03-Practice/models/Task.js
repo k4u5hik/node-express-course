@@ -15,6 +15,6 @@ const TaskSchema = new mongoose.Schema({
     }
 })
 
-
+// Mongoose Schema Types: https://mongoosejs.com/docs/schematypes.html
 
 module.exports = mongoose.model('Task', TaskSchema);
