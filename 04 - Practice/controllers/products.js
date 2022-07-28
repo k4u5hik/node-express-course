@@ -1,7 +1,7 @@
 const Product = require('../models/product')
 
 const getAllProductsStatic = async (req, res) => {
-  const products = await Product.find({ price: { $gt: 30 } })
+  const products = await Product.find({ price: { $lt: 80 } }) // gt is greater than, lt is less than https://mongoosejs.com/docs/queries.html
       .sort('price')
       .select('name price')
 
