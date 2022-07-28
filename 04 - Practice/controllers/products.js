@@ -1,7 +1,12 @@
 const Product = require('../models/product')
 
 const getAllProductsStatic = async (req, res) => {
-  const products = await Product.find({ price: { $lt: 80 } }) // gt is greater than, lt is less than https://mongoosejs.com/docs/queries.html
+  const products = await Product.find({ price: { $lt: 80 } }) 
+  // gt = greater than, 
+  // lt = less than, 
+  // gte = greater than and equal to
+  // https://mongoosejs.com/docs/tutorials/query_casting.html
+  // https://mongoosejs.com/docs/queries.html
       .sort('price')
       .select('name price')
 
