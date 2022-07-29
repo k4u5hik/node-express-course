@@ -1,11 +1,12 @@
 const Product = require('../models/product')
 
 const getAllProductsStatic = async (req, res) => {
-  const products = await Product.find({ price: { $in: 23 } }) 
+  const products = await Product.find({ price: { $eq: 23 } }) 
   // gt = greater than, 
   // lt = less than, 
   // gte = greater than and equal to
-  // in = seems to give results for equal to ?
+  // eq = equal to - check mongodb query operators
+  // https://www.mongodb.com/docs/manual/reference/operator/query/
   // https://mongoosejs.com/docs/tutorials/query_casting.html
   // https://mongoosejs.com/docs/queries.html
       .sort('price')
