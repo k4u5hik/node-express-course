@@ -16,7 +16,7 @@ const getAllProductsStatic = async (req, res) => {
 const getAllProducts = async (req, res) => {
   const { featured, company, name, sort, fields, numericFilters } = req.query
   const queryObject = {}
-  console.log("🚀 ~ file: products.js ~ line 19 ~ getAllProducts ~ queryObject", queryObject)
+  // console.log("🚀 ~ file: products.js ~ line 19 ~ getAllProducts ~ queryObject", queryObject)
 
   if (featured) {
     queryObject.featured = featured === 'true' ? true : false
